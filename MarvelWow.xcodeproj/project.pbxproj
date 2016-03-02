@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1AAF035C1C8704910038FF15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF035B1C8704910038FF15 /* AppDelegate.swift */; };
-		1AAF035E1C8704910038FF15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF035D1C8704910038FF15 /* ViewController.swift */; };
-		1AAF03611C8704910038FF15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAF035F1C8704910038FF15 /* Main.storyboard */; };
-		1AAF03631C8704910038FF15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AAF03621C8704910038FF15 /* Assets.xcassets */; };
-		1AAF03661C8704910038FF15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAF03641C8704910038FF15 /* LaunchScreen.storyboard */; };
-		1AAF03711C8704910038FF15 /* MarvelWowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF03701C8704910038FF15 /* MarvelWowTests.swift */; };
-		1AAF037C1C8704910038FF15 /* MarvelWowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF037B1C8704910038FF15 /* MarvelWowUITests.swift */; };
+		1AAF03971C8706220038FF15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF038B1C8706220038FF15 /* ViewController.swift */; };
+		1AAF03981C8706220038FF15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AAF038F1C8706220038FF15 /* Assets.xcassets */; };
+		1AAF03991C8706220038FF15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF03911C8706220038FF15 /* AppDelegate.swift */; };
+		1AAF039B1C8706220038FF15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAF03941C8706220038FF15 /* Main.storyboard */; };
+		1AAF03A11C87062E0038FF15 /* MarvelWowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF039E1C87062E0038FF15 /* MarvelWowTests.swift */; };
+		1AAF03A81C8706360038FF15 /* MarvelWowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF03A51C8706360038FF15 /* MarvelWowUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,18 +34,17 @@
 
 /* Begin PBXFileReference section */
 		1AAF03581C8704910038FF15 /* MarvelWow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelWow.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AAF035B1C8704910038FF15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1AAF035D1C8704910038FF15 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1AAF03601C8704910038FF15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1AAF03621C8704910038FF15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1AAF03651C8704910038FF15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1AAF03671C8704910038FF15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AAF036C1C8704910038FF15 /* MarvelWowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelWowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AAF03701C8704910038FF15 /* MarvelWowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelWowTests.swift; sourceTree = "<group>"; };
-		1AAF03721C8704910038FF15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AAF03771C8704910038FF15 /* MarvelWowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelWowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AAF037B1C8704910038FF15 /* MarvelWowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelWowUITests.swift; sourceTree = "<group>"; };
-		1AAF037D1C8704910038FF15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AAF038B1C8706220038FF15 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1AAF038F1C8706220038FF15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1AAF03911C8706220038FF15 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1AAF03921C8706220038FF15 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AAF03951C8706220038FF15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1AAF039E1C87062E0038FF15 /* MarvelWowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarvelWowTests.swift; sourceTree = "<group>"; };
+		1AAF03A01C87062E0038FF15 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AAF03A51C8706360038FF15 /* MarvelWowUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarvelWowUITests.swift; sourceTree = "<group>"; };
+		1AAF03A71C8706360038FF15 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,9 +75,9 @@
 		1AAF034F1C8704910038FF15 = {
 			isa = PBXGroup;
 			children = (
-				1AAF035A1C8704910038FF15 /* MarvelWow */,
-				1AAF036F1C8704910038FF15 /* MarvelWowTests */,
-				1AAF037A1C8704910038FF15 /* MarvelWowUITests */,
+				1AAF03A31C8706360038FF15 /* MarvelWowUITests */,
+				1AAF039C1C87062E0038FF15 /* MarvelWowTests */,
+				1AAF03891C8706220038FF15 /* MarvelWow */,
 				1AAF03591C8704910038FF15 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,35 +92,122 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1AAF035A1C8704910038FF15 /* MarvelWow */ = {
+		1AAF03891C8706220038FF15 /* MarvelWow */ = {
 			isa = PBXGroup;
 			children = (
-				1AAF035B1C8704910038FF15 /* AppDelegate.swift */,
-				1AAF035D1C8704910038FF15 /* ViewController.swift */,
-				1AAF035F1C8704910038FF15 /* Main.storyboard */,
-				1AAF03621C8704910038FF15 /* Assets.xcassets */,
-				1AAF03641C8704910038FF15 /* LaunchScreen.storyboard */,
-				1AAF03671C8704910038FF15 /* Info.plist */,
+				1AAF038A1C8706220038FF15 /* Controller */,
+				1AAF038C1C8706220038FF15 /* Extensions */,
+				1AAF038D1C8706220038FF15 /* Model */,
+				1AAF038E1C8706220038FF15 /* Resources */,
+				1AAF03901C8706220038FF15 /* Supporting-Files */,
+				1AAF03931C8706220038FF15 /* User-Interface */,
+				1AAF03961C8706220038FF15 /* View */,
 			);
 			path = MarvelWow;
 			sourceTree = "<group>";
 		};
-		1AAF036F1C8704910038FF15 /* MarvelWowTests */ = {
+		1AAF038A1C8706220038FF15 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1AAF03701C8704910038FF15 /* MarvelWowTests.swift */,
-				1AAF03721C8704910038FF15 /* Info.plist */,
+				1AAF038B1C8706220038FF15 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1AAF038C1C8706220038FF15 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1AAF038D1C8706220038FF15 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1AAF038E1C8706220038FF15 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1AAF038F1C8706220038FF15 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1AAF03901C8706220038FF15 /* Supporting-Files */ = {
+			isa = PBXGroup;
+			children = (
+				1AAF03911C8706220038FF15 /* AppDelegate.swift */,
+				1AAF03921C8706220038FF15 /* Info.plist */,
+			);
+			path = "Supporting-Files";
+			sourceTree = "<group>";
+		};
+		1AAF03931C8706220038FF15 /* User-Interface */ = {
+			isa = PBXGroup;
+			children = (
+				1AAF03941C8706220038FF15 /* Main.storyboard */,
+			);
+			path = "User-Interface";
+			sourceTree = "<group>";
+		};
+		1AAF03961C8706220038FF15 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1AAF039C1C87062E0038FF15 /* MarvelWowTests */ = {
+			isa = PBXGroup;
+			children = (
+				1AAF039D1C87062E0038FF15 /* Source */,
+				1AAF039F1C87062E0038FF15 /* Supporting-Files */,
 			);
 			path = MarvelWowTests;
 			sourceTree = "<group>";
 		};
-		1AAF037A1C8704910038FF15 /* MarvelWowUITests */ = {
+		1AAF039D1C87062E0038FF15 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				1AAF037B1C8704910038FF15 /* MarvelWowUITests.swift */,
-				1AAF037D1C8704910038FF15 /* Info.plist */,
+				1AAF039E1C87062E0038FF15 /* MarvelWowTests.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		1AAF039F1C87062E0038FF15 /* Supporting-Files */ = {
+			isa = PBXGroup;
+			children = (
+				1AAF03A01C87062E0038FF15 /* Info.plist */,
+			);
+			path = "Supporting-Files";
+			sourceTree = "<group>";
+		};
+		1AAF03A31C8706360038FF15 /* MarvelWowUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1AAF03A41C8706360038FF15 /* Source */,
+				1AAF03A61C8706360038FF15 /* Supporting-Files */,
 			);
 			path = MarvelWowUITests;
+			sourceTree = "<group>";
+		};
+		1AAF03A41C8706360038FF15 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1AAF03A51C8706360038FF15 /* MarvelWowUITests.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		1AAF03A61C8706360038FF15 /* Supporting-Files */ = {
+			isa = PBXGroup;
+			children = (
+				1AAF03A71C8706360038FF15 /* Info.plist */,
+			);
+			path = "Supporting-Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,9 +314,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AAF03661C8704910038FF15 /* LaunchScreen.storyboard in Resources */,
-				1AAF03631C8704910038FF15 /* Assets.xcassets in Resources */,
-				1AAF03611C8704910038FF15 /* Main.storyboard in Resources */,
+				1AAF039B1C8706220038FF15 /* Main.storyboard in Resources */,
+				1AAF03981C8706220038FF15 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,8 +340,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AAF035E1C8704910038FF15 /* ViewController.swift in Sources */,
-				1AAF035C1C8704910038FF15 /* AppDelegate.swift in Sources */,
+				1AAF03991C8706220038FF15 /* AppDelegate.swift in Sources */,
+				1AAF03971C8706220038FF15 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AAF03711C8704910038FF15 /* MarvelWowTests.swift in Sources */,
+				1AAF03A11C87062E0038FF15 /* MarvelWowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AAF037C1C8704910038FF15 /* MarvelWowUITests.swift in Sources */,
+				1AAF03A81C8706360038FF15 /* MarvelWowUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,20 +377,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1AAF035F1C8704910038FF15 /* Main.storyboard */ = {
+		1AAF03941C8706220038FF15 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1AAF03601C8704910038FF15 /* Base */,
+				1AAF03951C8706220038FF15 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		1AAF03641C8704910038FF15 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1AAF03651C8704910038FF15 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -399,7 +475,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = MarvelWow/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MarvelWow/Supporting-Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.andbeyond.MarvelWow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -410,7 +486,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = MarvelWow/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MarvelWow/Supporting-Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.andbeyond.MarvelWow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -421,7 +497,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = MarvelWowTests/Info.plist;
+				INFOPLIST_FILE = "MarvelWowTests/Supporting-Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.andbeyond.MarvelWowTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -433,7 +509,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = MarvelWowTests/Info.plist;
+				INFOPLIST_FILE = "MarvelWowTests/Supporting-Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.andbeyond.MarvelWowTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -444,7 +520,7 @@
 		1AAF03871C8704910038FF15 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = MarvelWowUITests/Info.plist;
+				INFOPLIST_FILE = "MarvelWowUITests/Supporting-Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.andbeyond.MarvelWowUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -456,7 +532,7 @@
 		1AAF03881C8704910038FF15 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = MarvelWowUITests/Info.plist;
+				INFOPLIST_FILE = "MarvelWowUITests/Supporting-Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.andbeyond.MarvelWowUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
