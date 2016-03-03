@@ -35,7 +35,9 @@ extension MarvelAPIClient: NSURLSessionDataDelegate {
     A protocol conformed to by objects to be executed as a query to the Marvel API.
  */
 protocol MarvelAPIQuery {
+    
     //	MARK: Properties
+    
     /// The endpoint path component for this query.
     var endpointAPIPath: String { get }
     /// The query as a path component to be appended to the API endpoint.
@@ -50,5 +52,17 @@ protocol MarvelAPIQuery {
     Represents a query about comics books to Marvel's API.
     This allows for specifying the number of comic books to be fetched as well as the date range for those comic books.
  */
-struct MarvelAPIComicBookQuery {
+struct MarvelAPIComicBookQuery: MarvelAPIQuery {
+    
+    //	MARK: Constants
+    
+    let endpointAPIPath = "/v1/public/comics"
+    
+    //	MARK: Computed Properties
+    
+    var fullQueryPathComponent: String {
+        return ""
+    }
+    
+    //	MARK: Variable Properties
 }
