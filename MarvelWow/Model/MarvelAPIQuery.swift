@@ -134,7 +134,7 @@ extension MarvelAPIQuery {
     
     var fullQueryPathComponent: String {
         let parametersStrings = parameters.map { $0.asParameterString() }
-        let pathComponent = parametersStrings.reduce("", combine: +)
+        let pathComponent = parametersStrings.reduce("") { $0.0 + "&" + $0.1 }
         return pathComponent
     }
 }
