@@ -13,6 +13,7 @@
 		1AAF039B1C8706220038FF15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAF03941C8706220038FF15 /* Main.storyboard */; };
 		1AAF03A11C87062E0038FF15 /* MarvelWowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF039E1C87062E0038FF15 /* MarvelWowTests.swift */; };
 		1AAF03A81C8706360038FF15 /* MarvelWowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF03A51C8706360038FF15 /* MarvelWowUITests.swift */; };
+		1AAF03AB1C870C5C0038FF15 /* JSONResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF03AA1C870C5C0038FF15 /* JSONResource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		1AAF03A01C87062E0038FF15 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AAF03A51C8706360038FF15 /* MarvelWowUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarvelWowUITests.swift; sourceTree = "<group>"; };
 		1AAF03A71C8706360038FF15 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AAF03AA1C870C5C0038FF15 /* JSONResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONResource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 		1AAF038D1C8706220038FF15 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1AAF03AA1C870C5C0038FF15 /* JSONResource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 			files = (
 				1AAF03991C8706220038FF15 /* AppDelegate.swift in Sources */,
 				1AAF03971C8706220038FF15 /* ViewController.swift in Sources */,
+				1AAF03AB1C870C5C0038FF15 /* JSONResource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
