@@ -58,3 +58,29 @@ extension RemoteResource {
         task.resume()
     }
 }
+
+/// A dictionary representing JSON.
+typealias JSONValue = [String: AnyObject]
+
+//	MARK: JSON Resource
+
+/**
+    `JSONResource`
+
+    A protocol which defines a JSON resource.
+*/
+protocol JSONResource: RemoteResource {
+    /// The host of the server where the JSON resides.
+    var JSONHost: String { get }
+    /// The path on the host for this JSON resource.
+    var JSONPath: String { get }
+    
+    /**
+        Processes the JSON data in place.
+     
+        - Parameter data:   The JSON data to be processed.
+     
+        - Returns:  Whether or not the JSON was processed successfully.
+     */
+    mutating func processJSON(data: NSData) -> Bool
+}
