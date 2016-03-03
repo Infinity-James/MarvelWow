@@ -27,13 +27,10 @@ extension RemoteResource {
     /**
         Loads the data defined by this resource.
      
-        - Parameter URLPath:    The path at which the data defined by this remote resource resides.
+        - Parameter URL:        The URL at which the data defined by this remote resource resides.
         - Parameter completion: A closure which will be executed upon completion the load (successful or otherwise).
      */
-    mutating func load(URLPath: String, completion: RemoteResourceHandler) {
-        
-        //  cannot load an invalid URL
-        guard let URL = NSURL(string: URLPath) else { fatalError("Invalid URL for resource: \(URLPath)") }
+    func load(URL: NSURL, completion: RemoteResourceHandler) {
         
         //  create a task to download the resource
         let session = NSURLSession.sharedSession()
@@ -83,4 +80,40 @@ protocol JSONResource: RemoteResource {
         - Returns:  Whether or not the JSON was processed successfully.
      */
     mutating func processJSON(data: NSData) -> Bool
+}
+
+/// A closure called upon the completion of the download and processing of JSON.
+typealias JSONProcessed = (success: Bool) -> ()
+
+extension JSONResource {
+    /// Default the host name to this app's main API.
+    var JSONHost: String { return "jsonplaceholder.typicode.com/" }
+    /// Use the host and the path to generate a fully qualified URL.
+    var JSONURL: NSURL {
+        //  guard against an invalid JSON host
+        guard let hostURL = NSURL(string: JSONHost) else { fatalError("The JSON Host for this resource is invalid: \(JSONHost)") }
+        //  create the full URL from the host and the path
+        let URL = hostURL.URLByAppendingPathComponent(JSONPath)
+        return URL
+    }
+    
+    /**
+        Downloads the JSON and processes it.
+     
+        - Parameter completion: Called on the main queue once the JSON has been processed, either successfully or not.
+     */
+    mutating func loadJSON(completion: JSONProcessed?) {
+        
+        //  download the JSON
+        load(JSONURL) { data, success in
+            //  processing the result is down to the adopter of this protocol
+            if let data = data where success {
+                let success = self.processJSON(data)
+                //  for convenience we call the completion on the main queue
+                NSOperationQueue.mainQueue().addOperationWithBlock { completion?(success: success) }
+            } else {
+                NSOperationQueue.mainQueue().addOperationWithBlock { completion?(success: false) }
+            }
+        }
+    }
 }
