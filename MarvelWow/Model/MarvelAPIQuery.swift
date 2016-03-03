@@ -9,10 +9,10 @@
 //	MARK: Marvel API Query Parameter Keys Enum
 
 /**
-`MarvelAPIQueryParameterKeys`
+    `MarvelAPIQueryParameterKeys`
 
-Defines the parameters available when making a query to the Marvel API.
-Making this an enum ensures safety for making a query with valid parameters.
+    Defines the parameters available when making a query to the Marvel API.
+    Making this an enum ensures safety for making a query with valid parameters.
 */
 enum MarvelAPIQueryParameterKeys {
     
@@ -21,9 +21,9 @@ enum MarvelAPIQueryParameterKeys {
 //	MARK: Marvel API Query Protocol
 
 /**
-`MarvelAPIQuery`
+    `MarvelAPIQuery`
 
-A protocol conformed to by objects to be executed as a query to the Marvel API.
+    A protocol conformed to by objects to be executed as a query to the Marvel API.
 */
 protocol MarvelAPIQuery {
     
@@ -38,10 +38,10 @@ protocol MarvelAPIQuery {
 //	MARK: Marvel API Comic Format Enum
 
 /**
-`MarvelAPIComicFormat`
+    `MarvelAPIComicFormat`
 
-Defines the type of comic formats which are available in a query.
-Each case maps to it's representation as a URL parameter.
+    Defines the type of comic formats which are available in a query.
+    Each case maps to it's representation as a URL parameter.
 */
 enum MarvelAPIComicFormat: String {
     /// The standard comic book format.
@@ -65,10 +65,10 @@ enum MarvelAPIComicFormat: String {
 //	MARK: Marvel API Comic Format Type Enum
 
 /**
-`MarvelAPIComicFormatType`
+    `MarvelAPIComicFormatType`
 
-Defines the format type for the comics requested in the query.
-Each case maps to it's representation as a URL parameter.
+    Defines the format type for the comics requested in the query.
+    Each case maps to it's representation as a URL parameter.
 */
 enum MarvelAPIComicFormatType: String {
     /// The stand alone comic.
@@ -80,9 +80,9 @@ enum MarvelAPIComicFormatType: String {
 //	MARK: Marvel API Comic Query Protocol
 
 /**
-`MarvelAPIComicQuery`
+    `MarvelAPIComicQuery`
 
-Builds on the MarvelAPIQuery as a query specifically about Marvel comics.
+    Builds on the MarvelAPIQuery as a query specifically about Marvel comics.
 */
 protocol MarvelAPIComicQuery: MarvelAPIQuery {
     
@@ -105,10 +105,10 @@ extension MarvelAPIComicQuery {
 //	MARK: Marvel API Comic Book Query Struct
 
 /**
-`MarvelAPIComicBookQuery`
+    `MarvelAPIComicBookQuery`
 
-Represents a query about comics books to Marvel's API.
-This allows for specifying the number of comic books to be fetched as well as the date range for those comic books.
+    Represents a query about comics books to Marvel's API.
+    This allows for specifying the number of comic books to be fetched as well as the date range for those comic books.
 */
 struct MarvelAPIComicBookQuery: MarvelAPIComicQuery {
     
