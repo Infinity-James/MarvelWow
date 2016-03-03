@@ -27,6 +27,16 @@ extension MarvelAPIClient: NSURLSessionDataDelegate {
     }
 }
 
+//	MARK: Marvel API Query
+
+/**
+    `MarvelAPIQuery`
+
+    A protocol conformed to by objects to be executed as a query to the Marvel API.
+ */
+protocol MarvelAPIQuery {
+}
+
 //	MARK: Marvel API Comic Book Query
 
 /**
@@ -36,5 +46,4 @@ extension MarvelAPIClient: NSURLSessionDataDelegate {
     This allows for specifying the number of comic books to be fetched as well as the date range for those comic books.
  */
 struct MarvelAPIComicBookQuery {
-    
 }
