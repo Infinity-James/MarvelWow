@@ -8,7 +8,7 @@
 
 import Foundation
 
-//	MARK: Marvel API Client
+//	MARK: Marvel API Client Class
 
 /**
     `MarvelAPIClient`
@@ -27,7 +27,7 @@ extension MarvelAPIClient: NSURLSessionDataDelegate {
     }
 }
 
-//	MARK: Marvel API Query
+//	MARK: Marvel API Query Protocol
 
 /**
     `MarvelAPIQuery`
@@ -44,7 +44,74 @@ protocol MarvelAPIQuery {
     var fullQueryPathComponent: String { get }
 }
 
-//	MARK: Marvel API Comic Book Query
+//	MARK: Marvel API Comic Format Enum
+
+/**
+    `MarvelAPIComicFormat`
+
+    Defines the type of comic formats which are available in a query.
+    Each case maps to it's representation as a URL parameter.
+ */
+enum MarvelAPIComicFormat: String {
+    /// The standard comic book format.
+    case Comic = "comic"
+    /// A magazine.
+    case Magazine = "magazine"
+    /// Comics collected into a TPB.
+    case TradePaperback = "trade paperback"
+    /// Comics sold as a hardcover TPB.
+    case Hardcover = "hard cover"
+    /// I don't know what a Marvel digest is.
+    case Digest = "digest"
+    /// Marvel Graphic Novels, such as 'Marvels'.
+    case GraphicNovel = "graphic novel"
+    /// Comics sold digitally.
+    case DigitalComic = "digital comic"
+    /// Marvel comics released under the 'Infinite' imprint.
+    case InfiniteComic = "infinite comic"
+}
+
+//	MARK: Marvel API Comic Format Type Enum
+
+/**
+    `MarvelAPIComicFormatType`
+
+    Defines the format type for the comics requested in the query.
+    Each case maps to it's representation as a URL parameter.
+ */
+enum MarvelAPIComicFormatType: String {
+    /// The stand alone comic.
+    case Comic = "comic"
+    /// A collection of the comics.
+    case Collection = "collection"
+}
+
+//	MARK: Marvel API Comic Query Protocol
+
+/**
+    `MarvelAPIComicQuery`
+
+    Builds on the MarvelAPIQuery as a query specifically about Marvel comics.
+ */
+protocol MarvelAPIComicQuery: MarvelAPIQuery {
+    
+    
+    //	MARK: Properties
+    
+    /// The desired comic format.
+    var comicFormat: MarvelAPIComicFormat { get }
+    /// The desired comic format type.
+    var comicFormatType: MarvelAPIComicFormatType { get }
+}
+
+extension MarvelAPIComicQuery {
+    /// The API endpoint path for queries about Marvel comics.
+    var endpointAPIPath: String { return "/v1/public/comics" }
+    /// The comic query format and format type as a parameter for the query.
+    var formatParameter: String { return "format=" + comicFormat.rawValue + "&formatType=" + comicFormatType.rawValue }
+}
+
+//	MARK: Marvel API Comic Book Query Struct
 
 /**
     `MarvelAPIComicBookQuery`
@@ -52,11 +119,12 @@ protocol MarvelAPIQuery {
     Represents a query about comics books to Marvel's API.
     This allows for specifying the number of comic books to be fetched as well as the date range for those comic books.
  */
-struct MarvelAPIComicBookQuery: MarvelAPIQuery {
+struct MarvelAPIComicBookQuery: MarvelAPIComicQuery {
     
     //	MARK: Constants
     
-    let endpointAPIPath = "/v1/public/comics"
+    let comicFormat = MarvelAPIComicFormat.Comic
+    let comicFormatType = MarvelAPIComicFormatType.Comic
     
     //	MARK: Computed Properties
     
