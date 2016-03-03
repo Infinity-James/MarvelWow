@@ -72,7 +72,7 @@ class MarvelAPIQueryTests: XCTestCase {
         var comicBookQuery = MarvelAPIComicBookQuery()
         
         //  test the default path component for a comic book query
-        let expectedDefaultPathComponent = "format=comic&formatType=comic"
+        let expectedDefaultPathComponent = "&format=comic&formatType=comic"
         XCTAssertEqual(expectedDefaultPathComponent, comicBookQuery.fullQueryPathComponent)
         
         //  add parameters to the query and test the path component contains the parameters
