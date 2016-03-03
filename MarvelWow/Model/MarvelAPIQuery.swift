@@ -13,7 +13,7 @@ import Foundation
 /**
     `MarvelAPIQueryParameter`
 
-    Defines an object which can serve as a parameter for a query to the Marvel API.
+    Defines a type which can serve as a parameter for a query to the Marvel API.
 */
 protocol MarvelAPIQueryParameter {
     
@@ -28,7 +28,7 @@ protocol MarvelAPIQueryParameter {
 //	MARK: Marvel API General Query Parameter Enum
 
 /**
-    `MarvelAPIQueryParameter`
+    `MarvelAPIGeneralQueryParameter`
 
     Defines the parameters available when making a query to the Marvel API.
     Making this an enum ensures safety for making a query with valid parameters.
@@ -68,10 +68,14 @@ enum MarvelAPIComicQueryParameter: MarvelAPIQueryParameter {
     
     //	MARK: Cases
     
-    /// Whether or not to exclude variants.
-    case ExcludeVariants(Bool)
     /// The range of dates between which the comics that we want exist.
     case DateRange(NSDate, NSDate)
+    /// Whether or not to exclude variants.
+    case ExcludeVariants(Bool)
+    /// The comic format.
+    case Format(MarvelAPIComicFormat)
+    /// The comic format type.
+    case FormatType(MarvelAPIComicFormatType)
     
     //	MARK: Properties
     
@@ -94,6 +98,10 @@ enum MarvelAPIComicQueryParameter: MarvelAPIQueryParameter {
             return "dateRange=" + startDateString + "," + endDateString
         case .ExcludeVariants(let exclude):
             return "noVariants=" + (exclude ? "true" : "false")
+        case .Format(let format):
+            return "format=" + format.rawValue
+        case .FormatType(let formatType):
+            return "formatType=" + formatType.rawValue
         }
     }
 }
@@ -115,6 +123,20 @@ protocol MarvelAPIQuery {
     var endpointAPIPath: String { get }
     /// The query as a path component to be appended to the API endpoint.
     var fullQueryPathComponent: String { get }
+    /// The parameters for the query.
+    var parameters: [MarvelAPIQueryParameter] { get }
+}
+
+extension MarvelAPIQuery {
+    
+    //	MARK: Computed Properties
+    
+    
+    var fullQueryPathComponent: String {
+        let parametersStrings = parameters.map { $0.asParameterString() }
+        let pathComponent = parametersStrings.reduce("", combine: +)
+        return pathComponent
+    }
 }
 
 //	MARK: Marvel API Comic Format Enum
@@ -167,21 +189,11 @@ enum MarvelAPIComicFormatType: String {
     Builds on the MarvelAPIQuery as a query specifically about Marvel comics.
 */
 protocol MarvelAPIComicQuery: MarvelAPIQuery {
-    
-    
-    //	MARK: Properties
-    
-    /// The desired comic format.
-    var comicFormat: MarvelAPIComicFormat { get }
-    /// The desired comic format type.
-    var comicFormatType: MarvelAPIComicFormatType { get }
 }
 
 extension MarvelAPIComicQuery {
     /// The API endpoint path for queries about Marvel comics.
     var endpointAPIPath: String { return "/v1/public/comics" }
-    /// The comic query format and format type as a parameter for the query.
-    var formatParameter: String { return "format=" + comicFormat.rawValue + "&formatType=" + comicFormatType.rawValue }
 }
 
 //	MARK: Marvel API Comic Book Query Struct
@@ -196,14 +208,38 @@ struct MarvelAPIComicBookQuery: MarvelAPIComicQuery {
     
     //	MARK: Constants
     
-    let comicFormat = MarvelAPIComicFormat.Comic
-    let comicFormatType = MarvelAPIComicFormatType.Comic
-    
-    //	MARK: Computed Properties
-    
-    var fullQueryPathComponent: String {
-        return ""
-    }
+    private let comicFormat = MarvelAPIComicFormat.Comic
+    private let comicFormatType = MarvelAPIComicFormatType.Comic
     
     //	MARK: Variable Properties
+    
+    /// The parameters for this query. Restricted access to keep the parameter types safe (we only want comic and general parameters).
+    private(set) var parameters = [MarvelAPIQueryParameter]()
+    
+    //	MARK: Initialization
+    
+    init() {
+        //  default the parameters to contain the speific format and format type that we care about
+        parameters = [MarvelAPIComicQueryParameter.Format(comicFormat), MarvelAPIComicQueryParameter.FormatType(comicFormatType)]
+    }
+    
+    //	MARK: Parameter Management
+    
+    /**
+        Add a general query parameter to this query.
+    
+        - Parameter parameter:  The general parameter to add to this query.
+     */
+    mutating func addParameter(parameter: MarvelAPIGeneralQueryParameter) {
+        
+    }
+    
+    /**
+        Add a comic specific query parameter to this query.
+     
+        - Parameter parameter:  The comic query parameter to add to this query.
+     */
+    mutating func addParameter(parameter: MarvelAPIComicQueryParameter) {
+        
+    }
 }
