@@ -35,6 +35,11 @@ extension MarvelAPIClient: NSURLSessionDataDelegate {
     A protocol conformed to by objects to be executed as a query to the Marvel API.
  */
 protocol MarvelAPIQuery {
+    //	MARK: Properties
+    /// The endpoint path component for this query.
+    var endpointAPIPath: String { get }
+    /// The query as a path component to be appended to the API endpoint.
+    var fullQueryPathComponent: String { get }
 }
 
 //	MARK: Marvel API Comic Book Query
