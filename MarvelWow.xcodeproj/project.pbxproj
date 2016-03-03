@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1AAF03971C8706220038FF15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF038B1C8706220038FF15 /* ViewController.swift */; };
+		1A3CF07B1C885248009E3EF2 /* ComicsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3CF07A1C885248009E3EF2 /* ComicsCollectionViewController.swift */; };
 		1AAF03981C8706220038FF15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AAF038F1C8706220038FF15 /* Assets.xcassets */; };
 		1AAF03991C8706220038FF15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF03911C8706220038FF15 /* AppDelegate.swift */; };
 		1AAF039B1C8706220038FF15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAF03941C8706220038FF15 /* Main.storyboard */; };
@@ -34,10 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A3CF07A1C885248009E3EF2 /* ComicsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicsCollectionViewController.swift; sourceTree = "<group>"; };
 		1AAF03581C8704910038FF15 /* MarvelWow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelWow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AAF036C1C8704910038FF15 /* MarvelWowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelWowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AAF03771C8704910038FF15 /* MarvelWowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelWowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AAF038B1C8706220038FF15 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1AAF038F1C8706220038FF15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AAF03911C8706220038FF15 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AAF03921C8706220038FF15 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 		1AAF038A1C8706220038FF15 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1AAF038B1C8706220038FF15 /* ViewController.swift */,
+				1A3CF07A1C885248009E3EF2 /* ComicsCollectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -343,8 +343,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A3CF07B1C885248009E3EF2 /* ComicsCollectionViewController.swift in Sources */,
 				1AAF03991C8706220038FF15 /* AppDelegate.swift in Sources */,
-				1AAF03971C8706220038FF15 /* ViewController.swift in Sources */,
 				1AAF03AB1C870C5C0038FF15 /* JSONResource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,6 +564,7 @@
 				1AAF03821C8704910038FF15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1AAF03831C8704910038FF15 /* Build configuration list for PBXNativeTarget "MarvelWowTests" */ = {
 			isa = XCConfigurationList;
@@ -572,6 +573,7 @@
 				1AAF03851C8704910038FF15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1AAF03861C8704910038FF15 /* Build configuration list for PBXNativeTarget "MarvelWowUITests" */ = {
 			isa = XCConfigurationList;
@@ -580,6 +582,7 @@
 				1AAF03881C8704910038FF15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
