@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--Collection View Controller-->
+        <!--Comics Collection View Controller-->
         <scene sceneID="Ve4-Yi-TrP">
             <objects>
-                <collectionViewController id="eG5-yq-aBw" sceneMemberID="viewController">
+                <collectionViewController id="eG5-yq-aBw" customClass="ComicsCollectionViewController" customModule="MarvelWow" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="tRd-b9-6Ye">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
