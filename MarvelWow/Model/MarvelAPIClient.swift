@@ -27,6 +27,18 @@ extension MarvelAPIClient: NSURLSessionDataDelegate {
     }
 }
 
+//	MARK: Marvel API Query Parameter Keys Enum
+
+/**
+    `MarvelAPIQueryParameterKeys`
+
+    Defines the parameters available when making a query to the Marvel API.
+    Making this an enum ensures safety for making a query with valid parameters.
+ */
+enum MarvelAPIQueryParameterKeys {
+    
+}
+
 //	MARK: Marvel API Query Protocol
 
 /**
