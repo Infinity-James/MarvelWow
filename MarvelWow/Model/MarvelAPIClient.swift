@@ -15,6 +15,14 @@ import Foundation
 
     A native Swift client for querying Marvel's API.
  */
-class MarvelAPIClient {
+class MarvelAPIClient: NSObject {
     
+}
+
+//	MARK: NSURLSessionDataDelegate Functions
+
+extension MarvelAPIClient: NSURLSessionDataDelegate {
+    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+        
+    }
 }
