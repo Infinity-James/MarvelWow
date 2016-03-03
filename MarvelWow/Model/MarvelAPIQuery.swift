@@ -214,13 +214,17 @@ struct MarvelAPIComicBookQuery: MarvelAPIComicQuery {
     //	MARK: Variable Properties
     
     /// The parameters for this query. Restricted access to keep the parameter types safe (we only want comic and general parameters).
-    private(set) var parameters = [MarvelAPIQueryParameter]()
+    var parameters: [MarvelAPIQueryParameter] {
+        return internalParameters
+    }
+    /// The internal storage for the parameters.
+    private var internalParameters = [MarvelAPIQueryParameter]()
     
     //	MARK: Initialization
     
     init() {
         //  default the parameters to contain the speific format and format type that we care about
-        parameters = [MarvelAPIComicQueryParameter.Format(comicFormat), MarvelAPIComicQueryParameter.FormatType(comicFormatType)]
+        internalParameters = [MarvelAPIComicQueryParameter.Format(comicFormat), MarvelAPIComicQueryParameter.FormatType(comicFormatType)]
     }
     
     //	MARK: Parameter Management
@@ -231,7 +235,7 @@ struct MarvelAPIComicBookQuery: MarvelAPIComicQuery {
         - Parameter parameter:  The general parameter to add to this query.
      */
     mutating func addParameter(parameter: MarvelAPIGeneralQueryParameter) {
-        
+        internalParameters.append(parameter)
     }
     
     /**
@@ -240,6 +244,6 @@ struct MarvelAPIComicBookQuery: MarvelAPIComicQuery {
         - Parameter parameter:  The comic query parameter to add to this query.
      */
     mutating func addParameter(parameter: MarvelAPIComicQueryParameter) {
-        
+        internalParameters.append(parameter)
     }
 }
