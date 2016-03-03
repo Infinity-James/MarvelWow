@@ -6,17 +6,99 @@
 //  Copyright © 2016 &Beyond. All rights reserved.
 //
 
-//	MARK: Marvel API Query Parameter Keys Enum
+import Foundation
+
+//	MARK: Marvel API Query Parameter Protocol
 
 /**
-    `MarvelAPIQueryParameterKeys`
+    `MarvelAPIQueryParameter`
+
+    Defines an object which can serve as a parameter for a query to the Marvel API.
+*/
+protocol MarvelAPIQueryParameter {
+    
+    /**
+         Returns the parameter as a string.
+         
+         - Returns:  The parameter as a string to be used in a query.
+     */
+    func asParameterString() -> String
+}
+
+//	MARK: Marvel API General Query Parameter Enum
+
+/**
+    `MarvelAPIQueryParameter`
 
     Defines the parameters available when making a query to the Marvel API.
     Making this an enum ensures safety for making a query with valid parameters.
 */
-enum MarvelAPIQueryParameterKeys {
+enum MarvelAPIGeneralQueryParameter: MarvelAPIQueryParameter {
     
+    //	MARK: Cases
+    
+    /// The manner in which to order the resources.
+    case OrderBy(String)
+    /// The number of desired resources.
+    case Limit(Int)
+    /// The number of resources to skip in the set of results.
+    case Offset(Int)
+    
+    //	MARK: MarvelAPIQueryParameter
+    
+    func asParameterString() -> String {
+        switch self {
+        case .Limit(let limit):
+            return "limit=" + String(limit)
+        case .Offset(let offset):
+            return "offset=" + String(offset)
+        case .OrderBy(let order):
+            return "orderBy=" + order
+        }
+    }
 }
+
+/**
+    `MarvelAPIComicQueryParameter`
+ 
+    Defines the parameters available when making a comic query to the Marvel API.
+    Making this an enum ensures safety for making a query with valid parameters.
+ */
+enum MarvelAPIComicQueryParameter: MarvelAPIQueryParameter {
+    
+    //	MARK: Cases
+    
+    /// Whether or not to exclude variants.
+    case ExcludeVariants(Bool)
+    /// The range of dates between which the comics that we want exist.
+    case DateRange(NSDate, NSDate)
+    
+    //	MARK: Properties
+    
+    private var dateFormatter: NSDateFormatter {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-DD"
+        return dateFormatter
+    }
+    
+    //	MARK: MarvelAPIQueryParameter
+    
+    func asParameterString() -> String {
+        switch (self) {
+        case .DateRange(let startDate, let endDate):
+            //  the date formatter has to be a computed property so we grab a handle to it to avoid creating a new one each time
+            let formatter = dateFormatter
+            //  create the strings from the data for the parameter
+            let startDateString = formatter.stringFromDate(startDate)
+            let endDateString = formatter.stringFromDate(endDate)
+            return "dateRange=" + startDateString + "," + endDateString
+        case .ExcludeVariants(let exclude):
+            return "noVariants=" + (exclude ? "true" : "false")
+        }
+    }
+}
+
+//	MARK: Comic Specific Keys
 
 //	MARK: Marvel API Query Protocol
 
