@@ -17,6 +17,26 @@ import Foundation
  */
 class MarvelAPIClient: NSObject {
     
+    //	MARK: Constants
+    
+    /// The base of API endpoint.
+    private let baseEndpointURL = NSURL(string:"https://gateway.marvel.com/")!
+    private let URLSession: NSURLSession = {
+        let session = NSURLSession()
+        return session
+    }()
+    
+    //	MARK: Type Alias
+    
+    /// A closure that can be called when a query has received a response
+    typealias QueryCompleted = () -> ()
+    
+    //	MARK: API Communication
+    
+    func executeQuery(query: MarvelAPIQuery, completion: QueryCompleted) {
+        let endpointURL = baseEndpointURL.URLByAppendingPathComponent(query.endpointAPIPath)
+        let fullURL = endpointURL.URLByAppendingPathComponent(query.fullQueryPathComponent)
+    }
 }
 
 //	MARK: NSURLSessionDataDelegate Functions
