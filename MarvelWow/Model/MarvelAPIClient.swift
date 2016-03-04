@@ -45,6 +45,8 @@ class MarvelAPIClient: NSObject {
         sessionQueue.name = "Marvel API Session Queue"
         return sessionQueue
     }()
+    /// A store for an query completion closures mapping the URL of the query to the closure.
+    private var queryCompletionClosures = [String: QueryCompleted]()
     
     
     
@@ -70,9 +72,20 @@ class MarvelAPIClient: NSObject {
         - Parameter query:      The query that Marvel need to handle (Captain America could probably get involved if it proves too difficult).
         - Parameter completion: Once Marvel answer our query (and they will because the good guys always win), this completion handler will be called.
      */
-    func executeQuery(query: MarvelAPIQuery, completion: QueryCompleted) {
+    func executeQuery(query: MarvelAPIQuery, completion: QueryCompleted) throws {
+        //  create the URL for the API request
         let endpointURL = baseEndpointURL.URLByAppendingPathComponent(query.endpointAPIPath)
         let fullURL = endpointURL.URLByAppendingPathComponent(query.fullQueryPathComponent)
+        
+        //  if this query is already in process we throw the appropriate error, otherwise we store the completion closure
+        let closureKey = fullURL.absoluteString
+        if let _ = queryCompletionClosures[closureKey] {
+            throw MarvelAPIClientError.QueryExists
+        } else {
+            queryCompletionClosures[closureKey] = completion
+        }
+        
+        //  create the request and data task and then start it
         let URLRequest = authorizedURLRequest(fromURL: fullURL)
         let dataTask = session.dataTaskWithRequest(URLRequest)
         dataTask.resume()
