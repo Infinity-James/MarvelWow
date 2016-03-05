@@ -33,8 +33,10 @@ struct MarvelComic: MarvelAPIResource {
     
     init?(JSON: JSONValue) {
         
+        print(JSON as NSDictionary)
+        
         //  a comic book cannot exist without an ID or resource URI
-        guard let identifier = JSON[MarvelAPIResourceIDKey] as? Identifier, URIString = JSON[MarvelAPIResourceURIKey] as? Identifier, URI = NSURL(string: URIString) else {
+        guard let identifier = JSON[MarvelAPIResourceIDKey] as? Identifier, URIString = JSON[MarvelAPIResourceURIKey] as? String, URI = NSURL(string: URIString) else {
             print("Expected a valid identifier and resource URI in JSON: \(JSON)")
             return nil
         }
