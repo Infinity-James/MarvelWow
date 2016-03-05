@@ -28,6 +28,9 @@ class MarvelAPIClientTests: XCTestCase {
         Test the ability to fetch comics.
      */
     func testFetchingComics() {
+        
+        let comicFetchExpectation = expectationWithDescription("Comics should be fetched.")
+        
         var query = MarvelAPIComicBookQuery()
         let limit = 10
         query.addParameter(.Limit(limit))
@@ -38,8 +41,15 @@ class MarvelAPIClientTests: XCTestCase {
                 XCTAssertNil(error)
                 
                 XCTAssertEqual(limit, comics!.count)
+                
+                comicFetchExpectation.fulfill()
             }
         } catch {
+            XCTFail("Resource fetched failed with error: \(error)")
+        }
+        
+        //  10 seconds is a reasonable amount of time to wait even with a poor connection
+        waitForExpectationsWithTimeout(10.0) { error in
             XCTFail("Resource fetched failed with error: \(error)")
         }
     }
