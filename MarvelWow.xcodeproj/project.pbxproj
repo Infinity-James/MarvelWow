@@ -17,7 +17,6 @@
 		1AAF03991C8706220038FF15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF03911C8706220038FF15 /* AppDelegate.swift */; };
 		1AAF039B1C8706220038FF15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAF03941C8706220038FF15 /* Main.storyboard */; };
 		1AAF03A81C8706360038FF15 /* MarvelWowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF03A51C8706360038FF15 /* MarvelWowUITests.swift */; };
-		1AAF03AB1C870C5C0038FF15 /* JSONResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF03AA1C870C5C0038FF15 /* JSONResource.swift */; };
 		1AB492811C89981800A0518B /* MarvelAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB492801C89981800A0518B /* MarvelAPIClientTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +54,6 @@
 		1AAF03A01C87062E0038FF15 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AAF03A51C8706360038FF15 /* MarvelWowUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarvelWowUITests.swift; sourceTree = "<group>"; };
 		1AAF03A71C8706360038FF15 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1AAF03AA1C870C5C0038FF15 /* JSONResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONResource.swift; sourceTree = "<group>"; };
 		1AB492801C89981800A0518B /* MarvelAPIClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarvelAPIClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,7 +137,6 @@
 				1A53BC651C8B095300E44427 /* MarvelAPIResource.swift */,
 				1A3CF07E1C88571E009E3EF2 /* MarvelAPIClient.swift */,
 				1A3CF0801C887449009E3EF2 /* MarvelAPIQuery.swift */,
-				1AAF03AA1C870C5C0038FF15 /* JSONResource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -363,7 +360,6 @@
 				1A3CF0811C887449009E3EF2 /* MarvelAPIQuery.swift in Sources */,
 				1A3CF07F1C88571E009E3EF2 /* MarvelAPIClient.swift in Sources */,
 				1A53BC661C8B095300E44427 /* MarvelAPIResource.swift in Sources */,
-				1AAF03AB1C870C5C0038FF15 /* JSONResource.swift in Sources */,
 				1A3CF07D1C885414009E3EF2 /* ComicBookCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
