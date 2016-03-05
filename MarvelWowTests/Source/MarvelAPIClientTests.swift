@@ -50,7 +50,9 @@ class MarvelAPIClientTests: XCTestCase {
         
         //  10 seconds is a reasonable amount of time to wait even with a poor connection
         waitForExpectationsWithTimeout(10.0) { error in
-            XCTFail("Resource fetched failed with error: \(error)")
+            if let error = error {
+                XCTFail("Resource fetched failed with error: \(error)")
+            }
         }
     }
 }

@@ -139,7 +139,7 @@ class MarvelAPIClient: NSObject {
             }
             
             //  parse the JSON into resources
-            let resources = JSON.map { return T(JSON: $0) }.filter { $0 != nil } as! [T]
+            let resources = JSON.map { return T(JSON: $0)! }
             
             completion(resources: resources, error: error)
         }
@@ -199,9 +199,9 @@ extension MarvelAPIClient: NSURLSessionDownloadDelegate {
         }
         
         //  we parse the data into a JSON object and call the completion closure with it
-        let JSON: AnyObject?
+        let JSON: NSDictionary?
         do {
-            JSON = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+            JSON = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? NSDictionary
         } catch {
             print("Error occured whilst trying to serialize JSON: \(error)")
             queryCompleted(JSON: nil, error: error)
