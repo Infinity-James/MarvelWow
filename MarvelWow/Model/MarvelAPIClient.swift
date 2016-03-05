@@ -60,9 +60,9 @@ class MarvelAPIClient: NSObject {
         A closure that can be called when a query has received a response.
     
         - Parameter JSON:   The parsed JSON object, if everything went well.
-        - Parameter JSON:   An error, if something didn't go well.
+        - Parameter error:  An error, if something didn't go well.
      */
-    typealias QueryCompleted = (JSON: JSON?, error: ErrorType?) -> ()
+    typealias QueryCompleted = (JSON: [JSONValue]?, error: ErrorType?) -> ()
     
     //	MARK: Initialization
     
@@ -98,6 +98,31 @@ class MarvelAPIClient: NSObject {
         let URLRequest = authorizedURLRequest(fromURL: fullURL)
         let dataTask = session.dataTaskWithRequest(URLRequest)
         dataTask.resume()
+    }
+    
+    /**
+        Fetches the Marvel resources appropriate for a given query.
+     
+        - Parameter query:      The query to Marvel API.
+        - Parameter completion: A closure that can be called when a query has received a response. (Called on the main queue).
+             - resources: The requested resources, if everything went well.
+             - error:     An error, if something didn't go well.
+     */
+    func fetchResourcesForQuery<T: MarvelAPIResource>(query: MarvelAPIQuery, completion: (resources: [T]?, error: ErrorType?) -> ()) throws {
+        //  we throw any error thrown by executeQuery
+        try executeQuery(query) { JSON, error in
+            
+            //  if we do not have our JSON we throw an error if it exists
+            guard let JSON = JSON where error == nil else {
+                completion(resources: nil, error: error)
+                return
+            }
+            
+            //  parse the JSON into resources
+            let resources = JSON.map { return T(JSON: $0) }.filter { $0 != nil } as! [T]
+            
+            completion(resources: resources, error: error)
+        }
     }
     
     //	MARK: Authorization
@@ -158,7 +183,7 @@ extension MarvelAPIClient: NSURLSessionDataDelegate {
             return
         }
         
-        guard let JSON = JSONObject as? JSON else {
+        guard let JSON = JSONObject as? [JSONValue] else {
             print("JSON is not in expected format: \(JSONObject)")
             queryCompleted(JSON: nil, error: MarvelAPIClientError.InvalidJSON)
             return

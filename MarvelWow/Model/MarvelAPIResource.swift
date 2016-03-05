@@ -13,7 +13,7 @@ import Foundation
 /// A type which uniquely identifies a JSON resource.
 typealias Identifier = String
 /// A dictionary representing JSON.
-typealias JSON = [String: AnyObject]
+typealias JSONValue = [String: AnyObject]
 
 //	MARK: Marvel API Resource Protocol
 
@@ -40,5 +40,5 @@ protocol MarvelAPIResource {
     
         - Returns:  An initialized Marvel resource.
      */
-    init?(JSON: JSON)
+    init?(JSON: JSONValue)
 }
