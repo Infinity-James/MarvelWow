@@ -31,7 +31,31 @@ class ComicsCollectionViewController: UICollectionViewController {
     
     //	MARK: Comic Fetching
     
-    
+    /**
+        Fetches the next batch of comics depending on how many we already have.
+     */
+    private func fetchNextBatchOfComics() {
+        var query = MarvelAPIComicBookQuery()
+        query.addParameter(.Limit(comicBatchSize))
+        query.addParameter(.Offset(comics.count))
+        do {
+            try marvelAPIClient.fetchResourcesForQuery(query) { (comics: [MarvelComic]?, error: ErrorType?) in
+                
+                //  if there were any comics fetched we add them to the comics that we already have and display them
+                if let comics = comics {
+                    NSOperationQueue.mainQueue().addOperationWithBlock {
+                        self.comics.appendContentsOf(comics)
+                        self.collectionView!.reloadData()
+                    }
+                    //  if an error occured during the fetch we'll log it
+                } else if let error = error {
+                    print("Error occured whilst trying to fetch comics: \(error)")
+                }
+            }
+        } catch {
+            print("Error occured whilst trying to fetch comics: \(error)")
+        }
+    }
     
     //	MARK: View Lifecycle
     
@@ -39,5 +63,25 @@ class ComicsCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         //  fetch the first set of comics
+        fetchNextBatchOfComics()
+    }
+}
+
+//	MARK: UICollectionViewDataSource Functions
+
+extension ComicsCollectionViewController {
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        //  get the cell
+        guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(ComicBookCollectionViewCell), forIndexPath: indexPath) as? ComicBookCollectionViewCell else {
+            fatalError("Collection view is not configured properly. Expected cell with the reuse identifier: \(String(ComicBookCollectionViewCell))")
+        }
+        
+        return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return comics.count
     }
 }
