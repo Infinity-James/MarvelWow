@@ -124,7 +124,7 @@ class MarvelAPIClient: NSObject {
         Fetches the Marvel resources appropriate for a given query.
      
         - Parameter query:      The query to Marvel API.
-        - Parameter completion: A closure that can be called when a query has received a response. (Called on the main queue).
+        - Parameter completion: A closure that can be called when a query has received a response.
              - resources: The requested resources, if everything went well.
              - error:     An error, if something didn't go well.
      */
