@@ -11,7 +11,7 @@ import Foundation
 //	MARK: Type Alias
 
 /// A type which uniquely identifies a JSON resource.
-typealias Identifier = String
+typealias Identifier = Int
 /// A dictionary representing JSON.
 typealias JSONValue = [String: AnyObject]
 
