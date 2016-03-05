@@ -51,8 +51,6 @@ class MarvelAPIClient: NSObject {
         sessionQueue.name = "Marvel API Session Queue"
         return sessionQueue
     }()
-    /// A dictionary that maps a URL to the data it has received thus far.
-    private var receivedData = [NSURL: NSMutableData]()
     /// A store for an query completion closures mapping the URL of the query to the closure.
     private var queryCompletionClosures = [NSURL: QueryCompleted]()
     /// Parameters that need to be added to a URL request to the Marvel servers.
@@ -114,13 +112,12 @@ class MarvelAPIClient: NSObject {
             throw MarvelAPIClientError.QueryExists
         } else {
             queryCompletionClosures[finalURL] = completion
-            receivedData[finalURL] = NSMutableData()
         }
         
-        //  create the request and data task and then start it
+        //  create the request and download task and then start it
         
-        let dataTask = session.dataTaskWithRequest(URLRequest)
-        dataTask.resume()
+        let downloadTask = session.downloadTaskWithRequest(URLRequest)
+        downloadTask.resume()
     }
     
     /**
@@ -171,26 +168,12 @@ class MarvelAPIClient: NSObject {
     }
 }
 
-//	MARK: NSURLSessionDataDelegate Functions
+//	MARK: NSURLSessionDownloadDelegate Functions
 
-extension MarvelAPIClient: NSURLSessionDataDelegate {
-    
-    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
-        guard let URL = dataTask.originalRequest?.URL,
-            currentData = receivedData[URL] else {
-            print("There is no URL associated with the data task: \(dataTask).")
-            return
-        }
-        
-        //  append the data the the data we have already received for this URL
-        currentData.appendData(data)
-        receivedData[URL] = currentData
-    }
-    
-    
+extension MarvelAPIClient: NSURLSessionDownloadDelegate {
     
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
-        
+        //  If there was an error we print all of the relevant information
         if let error = error {
             print("Error occured whilst executing data task: \(error.localizedDescription)\nCode: \(error.code)\nReason: \(error.localizedFailureReason)")
             print("Original Request: \(task.originalRequest)")
@@ -198,29 +181,36 @@ extension MarvelAPIClient: NSURLSessionDataDelegate {
             return
         }
         
-        //  we should only be dealing with data tasks, the task should have an associated URL, and that URL must map to a closure and received data
-        guard let dataTask = task as? NSURLSessionDataTask,
-            URL = dataTask.originalRequest?.URL,
-            queryCompleted = queryCompletionClosures[URL],
-            data = receivedData[URL]?.copy() as? NSData else {
-                print("Error occured when executing the NSURLSessionTask (\(task)): \(error)")
+        
+    }
+    
+    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
+        //  we need a closure which maps to this task otherwise there's nothing to give the results to
+        guard let URL = downloadTask.originalRequest?.URL,
+            queryCompleted = queryCompletionClosures[URL] else {
+                print("Completion closure not found download task: \(downloadTask)\nAborting early.")
                 return
         }
         
+        //  we need the data from this download task
+        guard let data = NSData(contentsOfURL: location) else {
+            print("Could not find data for download task: \(downloadTask)\nApparent Location: \(location)")
+            return
+        }
+        
         //  we parse the data into a JSON object and call the completion closure with it
-        let JSONObject: AnyObject?
+        let JSON: AnyObject?
         do {
-            JSONObject = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            JSON = try NSJSONSerialization.JSONObjectWithData(data, options: [])
         } catch {
             print("Error occured whilst trying to serialize JSON: \(error)")
             queryCompleted(JSON: nil, error: error)
             return
         }
         
-        guard let JSON = JSONObject as? JSONValue,
-            dataJSON = JSON["data"] as? JSONValue,
+        guard let dataJSON = JSON?["data"] as? NSDictionary,
             resultsJSON = dataJSON["results"] as? [JSONValue] else {
-                print("JSON is not in expected format: \(JSONObject)")
+                print("JSON is not in expected format: \(JSON)")
                 queryCompleted(JSON: nil, error: MarvelAPIClientError.InvalidJSON)
                 return
         }
