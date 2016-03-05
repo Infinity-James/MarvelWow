@@ -81,7 +81,7 @@ enum MarvelAPIComicQueryParameter: MarvelAPIQueryParameter {
     
     private var dateFormatter: NSDateFormatter {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
+        dateFormatter.dateFormat = "YYYY-MM-dd"
         return dateFormatter
     }
     

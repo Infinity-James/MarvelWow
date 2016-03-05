@@ -42,7 +42,7 @@ class MarvelAPIQueryTests: XCTestCase {
         
         //  the Marvel API expects the dates in this format
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
+        dateFormatter.dateFormat = "YYYY-MM-dd"
         let startDate = NSDate(timeIntervalSince1970: 0.0)
         let endDate = NSDate()
         let dateRangeParameter = MarvelAPIComicQueryParameter.DateRange(startDate, endDate)
