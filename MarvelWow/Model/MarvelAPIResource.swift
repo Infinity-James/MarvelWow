@@ -42,3 +42,15 @@ protocol MarvelAPIResource {
      */
     init?(JSON: JSONValue)
 }
+
+//	MARK: Constants
+
+/**
+    These need to be global constants because if they are computed properties on `MarvelAPIResource` they cannot be used within the initializer.
+    This is because `self` cannot be used until all properties have been initialized.
+ */
+
+/// A key that can be used on JSON describing a resource to get the ID.
+let MarvelAPIResourceIDKey = "id"
+/// A key that can be used on JSON describing a resource to get the ID.
+let MarvelAPIResourceURIKey = "resourceURI"
