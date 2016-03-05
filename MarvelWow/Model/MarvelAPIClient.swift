@@ -183,13 +183,17 @@ extension MarvelAPIClient: NSURLSessionDataDelegate {
             return
         }
         
-        guard let JSON = JSONObject as? [JSONValue] else {
-            print("JSON is not in expected format: \(JSONObject)")
-            queryCompleted(JSON: nil, error: MarvelAPIClientError.InvalidJSON)
-            return
+        guard let JSON = JSONObject as? JSONValue,
+            dataJSON = JSON["data"] as? JSONValue,
+            resultsJSON = dataJSON["results"] as? [JSONValue] else {
+                print("JSON is not in expected format: \(JSONObject)")
+                queryCompleted(JSON: nil, error: MarvelAPIClientError.InvalidJSON)
+                return
         }
         
+        
+        
         //  everything went well
-        queryCompleted(JSON: JSON, error: nil)
+        queryCompleted(JSON: resultsJSON, error: nil)
     }
 }
