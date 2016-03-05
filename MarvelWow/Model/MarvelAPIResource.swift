@@ -8,6 +8,13 @@
 
 import Foundation
 
+//	MARK: Type Alias
+
+/// A type which uniquely identifies a JSON resource.
+typealias Identifier = String
+/// A dictionary representing JSON.
+typealias JSON = [String: AnyObject]
+
 //	MARK: Marvel API Resource Protocol
 
 /**
@@ -17,4 +24,21 @@ import Foundation
  */
 protocol MarvelAPIResource {
     
+    //	MARK: Properties
+    
+    /// The unique identifier for this resource.
+    var ID: Identifier { get }
+    /// The URI at which this resource resides.
+    var resourceURI: NSURL { get }
+    
+    //	MARK: Initialization
+    
+    /**
+        Initializes a resource given some JSON.
+    
+        - Parameter JSON:   The JSON from which the resource should be initialized.
+    
+        - Returns:  An initialized Marvel resource.
+     */
+    init?(JSON: JSON)
 }
