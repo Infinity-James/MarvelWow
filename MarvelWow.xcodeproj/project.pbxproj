@@ -46,6 +46,7 @@
 		1A3CF0821C88861F009E3EF2 /* MarvelAPIQueryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarvelAPIQueryTests.swift; sourceTree = "<group>"; };
 		1A53BC651C8B095300E44427 /* MarvelAPIResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarvelAPIResource.swift; sourceTree = "<group>"; };
 		1A53BC671C8B230100E44427 /* MarvelComic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarvelComic.swift; sourceTree = "<group>"; };
+		1A53BC691C8B3A0600E44427 /* MarvelWow-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarvelWow-Bridging-Header.h"; sourceTree = "<group>"; };
 		1AAF03581C8704910038FF15 /* MarvelWow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelWow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AAF036C1C8704910038FF15 /* MarvelWowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelWowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AAF03771C8704910038FF15 /* MarvelWowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelWowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +156,7 @@
 		1AAF03901C8706220038FF15 /* Supporting-Files */ = {
 			isa = PBXGroup;
 			children = (
+				1A53BC691C8B3A0600E44427 /* MarvelWow-Bridging-Header.h */,
 				1AAF03911C8706220038FF15 /* AppDelegate.swift */,
 				1AAF03921C8706220038FF15 /* Info.plist */,
 			);
@@ -503,6 +505,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.andbeyond.MarvelWow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/MarvelWow/Supporting-Files/MarvelWow-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -514,6 +517,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.andbeyond.MarvelWow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/MarvelWow/Supporting-Files/MarvelWow-Bridging-Header.h";
 			};
 			name = Release;
 		};
