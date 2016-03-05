@@ -30,6 +30,8 @@ class MarvelAPIClient: NSObject {
     
     //	MARK: Marvel API Client Errors
     enum MarvelAPIClientError: ErrorType {
+        /// The received JSON for the query was in an unexpected format.
+        case InvalidJSON
         /// The query was previously made and is still in process.
         case QueryExists
     }
@@ -45,15 +47,22 @@ class MarvelAPIClient: NSObject {
         sessionQueue.name = "Marvel API Session Queue"
         return sessionQueue
     }()
+    /// A dictionary that maps a URL to the data it has received thus far.
+    private var receivedData = [NSURL: NSMutableData]()
     /// A store for an query completion closures mapping the URL of the query to the closure.
-    private var queryCompletionClosures = [String: QueryCompleted]()
+    private var queryCompletionClosures = [NSURL: QueryCompleted]()
     
     
     
     //	MARK: Type Alias
     
-    /// A closure that can be called when a query has received a response
-    typealias QueryCompleted = () -> ()
+    /**
+        A closure that can be called when a query has received a response.
+    
+        - Parameter JSON:   The parsed JSON object, if everything went well.
+        - Parameter JSON:   An error, if something didn't go well.
+     */
+    typealias QueryCompleted = (JSON: JSON?, error: ErrorType?) -> ()
     
     //	MARK: Initialization
     
@@ -78,11 +87,11 @@ class MarvelAPIClient: NSObject {
         let fullURL = endpointURL.URLByAppendingPathComponent(query.fullQueryPathComponent)
         
         //  if this query is already in process we throw the appropriate error, otherwise we store the completion closure
-        let closureKey = fullURL.absoluteString
-        if let _ = queryCompletionClosures[closureKey] {
+        if let _ = queryCompletionClosures[fullURL] {
             throw MarvelAPIClientError.QueryExists
         } else {
-            queryCompletionClosures[closureKey] = completion
+            queryCompletionClosures[fullURL] = completion
+            receivedData[fullURL] = NSMutableData()
         }
         
         //  create the request and data task and then start it
@@ -116,7 +125,46 @@ class MarvelAPIClient: NSObject {
 //	MARK: NSURLSessionDataDelegate Functions
 
 extension MarvelAPIClient: NSURLSessionDataDelegate {
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+    
+    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
+        guard let URL = dataTask.originalRequest?.URL,
+            currentData = receivedData[URL] else {
+            print("There is no URL associated with the data task: \(dataTask).")
+            return
+        }
         
+        //  append the data the the data we have already received for this URL
+        currentData.appendData(data)
+        receivedData[URL] = currentData
+    }
+    
+    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+        //  we should only be dealing with data tasks, the task should have an associated URL, and that URL must map to a closure and received data
+        guard let dataTask = task as? NSURLSessionDataTask,
+            URL = dataTask.originalRequest?.URL,
+            queryCompleted = queryCompletionClosures[URL],
+            data = receivedData[URL]?.copy() as? NSData where error == nil else {
+                print("Error occured when executing the NSURLSessionTask (\(task)): \(error)")
+                return
+        }
+        
+        //  we parse the data into a JSON object and call the completion closure with it
+        let JSONObject: AnyObject?
+        do {
+            JSONObject = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+        } catch {
+            print("Error occured whilst trying to serialize JSON: \(error)")
+            queryCompleted(JSON: nil, error: error)
+            return
+        }
+        
+        guard let JSON = JSONObject as? JSON else {
+            print("JSON is not in expected format: \(JSONObject)")
+            queryCompleted(JSON: nil, error: MarvelAPIClientError.InvalidJSON)
+            return
+        }
+        
+        //  everything went well
+        queryCompleted(JSON: JSON, error: nil)
     }
 }
