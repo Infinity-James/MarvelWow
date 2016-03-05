@@ -18,5 +18,29 @@ import XCTest
  */
 class MarvelAPIClientTests: XCTestCase {
     
+    //	MARK: Properties
     
+    private let marvelAPIClient = MarvelAPIClient()
+    
+    //	MARK: Tests
+    
+    /**
+        Test the ability to fetch comics.
+     */
+    func testFetchingComics() {
+        var query = MarvelAPIComicBookQuery()
+        let limit = 10
+        query.addParameter(.Limit(limit))
+        do {
+            try marvelAPIClient.fetchResourcesForQuery(query) { (comics: [MarvelComic]?, error: ErrorType?) in
+                
+                XCTAssertNotNil(comics)
+                XCTAssertNil(error)
+                
+                XCTAssertEqual(limit, comics!.count)
+            }
+        } catch {
+            XCTFail("Resource fetched failed with error: \(error)")
+        }
+    }
 }
