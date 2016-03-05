@@ -28,6 +28,8 @@ struct MarvelComic: MarvelAPIResource {
     
     /// The title of the comic.
     let title: String
+    /// The URL pointing to the thumbnail of the comic.
+    let thumbnailURL: NSURL?
     
     //	MARK: Initialization
     
@@ -44,12 +46,23 @@ struct MarvelComic: MarvelAPIResource {
         ID = identifier
         resourceURI = URI
         
-        //  pull the comic specific properties
+        //  pull the comic specific properties starting with the title
+        
         guard let comicTitle = JSON["title"] as? String else {
             print("What is a comic without a title? Title missing in JSON: \(JSON)")
             return nil
         }
         
         title = comicTitle
+        
+        //  get the URL for the thumbnail of the comic if it exists
+        
+        if let thumbnail = JSON["thumbnail"] as? JSONValue,
+            thumbnailPath = thumbnail["path"] as? String,
+            thumbnailExtension = thumbnail["extension"] as? String {
+                thumbnailURL = NSURL(string: thumbnailPath + "." + thumbnailExtension)
+        } else {
+            thumbnailURL = nil
+        }
     }
 }
