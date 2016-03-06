@@ -230,13 +230,13 @@ extension ComicsCollectionViewController: UIImagePickerControllerDelegate, UINav
             print("Error occurred when trying to cache the image \(image) for the comic: \(comicForCoverChange)")
         }
         
-        saveComicCoverToDropbox(image, forComic: comicForCoverChange)
-        
         //  reload the comic cell with the new cover
         if let index = comics.indexOf({ $0.ID == comicForCoverChange.ID }) {
             let itemIndex = comics.startIndex.distanceTo(index)
             collectionView!.reloadItemsAtIndexPaths([NSIndexPath(forItem: itemIndex, inSection: 0)])
         }
+        
+        saveComicCoverToDropbox(image, forComic: comicForCoverChange)
         
         self.comicForCoverChange = nil
     }
