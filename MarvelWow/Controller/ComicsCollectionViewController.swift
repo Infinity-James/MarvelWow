@@ -38,6 +38,8 @@ class ComicsCollectionViewController: UICollectionViewController {
         queue.name = "Cover Image Fetch Operation Queue"
         return queue
     }()
+    /// Track whether we are already fetching comics.
+    private var fetchInProgress = false
     
     //	MARK: Comic Fetching
     
@@ -45,11 +47,17 @@ class ComicsCollectionViewController: UICollectionViewController {
         Fetches the next batch of comics depending on how many we already have.
      */
     private func fetchNextBatchOfComics() {
+        guard !fetchInProgress else { return }
+        
+        fetchInProgress = true
+        
         var query = MarvelAPIComicBookQuery()
         query.addParameter(.Limit(comicBatchSize))
         query.addParameter(.Offset(comics.count))
         do {
             try marvelAPIClient.fetchResourcesForQuery(query) { (comics: [MarvelComic]?, error: ErrorType?) in
+                
+                self.fetchInProgress = false
                 
                 //  if there were any comics fetched we add them to the comics that we already have and display them
                 if let comics = comics {
@@ -64,6 +72,7 @@ class ComicsCollectionViewController: UICollectionViewController {
             }
         } catch {
             print("Error occured whilst trying to fetch comics: \(error)")
+            fetchInProgress = false
         }
     }
     
@@ -179,6 +188,22 @@ extension ComicsCollectionViewController {
         alert.addAction(hellYeahAction)
         alert.addAction(boringAction)
         presentViewController(alert, animated: true, completion: nil)
+    }
+}
+
+//	MARK: UIScrollViewDelegate
+
+extension ComicsCollectionViewController {
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        let heightOfCollection = scrollView.contentSize.height
+        let positionInCollection = scrollView.bounds.maxY
+        let distanceFromBottom = heightOfCollection - positionInCollection
+        
+        //  if the user is not many comics from the bottom we need to load more
+        let unacceptableDistanceFromBottom = (collectionView!.collectionViewLayout as! UICollectionViewFlowLayout).itemSize.height * 3.0
+        if distanceFromBottom >= unacceptableDistanceFromBottom {
+            fetchNextBatchOfComics()
+        }
     }
 }
 
