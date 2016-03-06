@@ -148,13 +148,16 @@ extension ComicsCollectionViewController {
             fatalError("Collection view is not configured properly. Expected cell with the reuse identifier: \(String(ComicBookCollectionViewCell))")
         }
         
+        //  set the cell tag to it's item so that we know if it's worth setting the image on it by the time we have it
+        cell.tag = indexPath.item
+        
         //  set the image for the comic cell
         let comic = comics[indexPath.item]
         if let coverFetchOperation = ComicCoverFetchOperation(comic: comic) {
             coverFetchOperation.completionBlock = {
                 NSOperationQueue.mainQueue().addOperationWithBlock {
                     //  only update the cell if it is still displayed (by the time we get the image it might be irrelevant)
-                    if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? ComicBookCollectionViewCell {
+                    if cell.tag == indexPath.item {
                         cell.coverImage = coverFetchOperation.coverImage
                     }
                 }
@@ -198,10 +201,12 @@ extension ComicsCollectionViewController {
         let heightOfCollection = scrollView.contentSize.height
         let positionInCollection = scrollView.bounds.maxY
         let distanceFromBottom = heightOfCollection - positionInCollection
+
+        print("Height: \(heightOfCollection)/n Position: \(positionInCollection)\nDistance: \(distanceFromBottom)")
         
-        //  if the user is not many comics from the bottom we need to load more
-        let unacceptableDistanceFromBottom = (collectionView!.collectionViewLayout as! UICollectionViewFlowLayout).itemSize.height * 3.0
-        if distanceFromBottom >= unacceptableDistanceFromBottom {
+        //  if the user is a few comics from the bottom we need to load more
+        let unacceptableDistanceFromBottom = (collectionView!.collectionViewLayout as! UICollectionViewFlowLayout).itemSize.height * 2
+        if distanceFromBottom <= unacceptableDistanceFromBottom {
             fetchNextBatchOfComics()
         }
     }
