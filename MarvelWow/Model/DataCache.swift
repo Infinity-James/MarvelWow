@@ -43,8 +43,6 @@ struct DataCache {
         var cacheSize = 0
         URLsInCache.forEach { cacheSize += $0.fileSize ?? 0 }
         
-        print("Cache Size: \(cacheSize / 1000)Mb")
-        
         //  if the cache is still small enough we can exit early
         guard cacheSize < maxCacheSize else { return false }
         
