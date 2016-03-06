@@ -44,7 +44,7 @@ struct DataCache {
         URLsInCache.forEach { cacheSize += $0.fileSize ?? 0 }
         
         //  if the cache is still small enough we can exit early
-        guard cacheSize < maxCacheSize else { return false }
+        guard cacheSize > maxCacheSize else { return false }
         
         //  sort the files in order of newest to oldest
         let sortedURLs = URLsInCache.sort { urlA, urlB in
