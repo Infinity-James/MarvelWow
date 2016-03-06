@@ -32,6 +32,12 @@ class ComicsCollectionViewController: UICollectionViewController {
     private let marvelAPIClient = MarvelAPIClient()
     /// The comic whose cover we are currently changing (if one exists).
     private var comicForCoverChange: MarvelComic?
+    /// A queue on which we will execute cover image fetch operations.
+    private let comicCoverOperationQueue: NSOperationQueue = {
+        let queue = NSOperationQueue()
+        queue.name = "Cover Image Fetch Operation Queue"
+        return queue
+    }()
     
     //	MARK: Comic Fetching
     
@@ -108,7 +114,7 @@ class ComicsCollectionViewController: UICollectionViewController {
         //  create the file name from the ID of the comic (allowing us to use it in the future for this comic)
         let fileName = "/" + String(comic.ID) + ".jpg"
         client.files.upload(path: fileName, body: imageData!).response { response, error in
-            //  not using the response yet
+            //  cache the image now that it
         }
     }
     
@@ -131,6 +137,17 @@ extension ComicsCollectionViewController {
         //  get the cell
         guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(ComicBookCollectionViewCell), forIndexPath: indexPath) as? ComicBookCollectionViewCell else {
             fatalError("Collection view is not configured properly. Expected cell with the reuse identifier: \(String(ComicBookCollectionViewCell))")
+        }
+        
+        //  set the image for the comic cell
+        let comic = comics[indexPath.item]
+        if let coverFetchOperation = ComicCoverFetchOperation(comic: comic) {
+            coverFetchOperation.completionBlock = {
+                NSOperationQueue.mainQueue().addOperationWithBlock {
+                    cell.coverImage = coverFetchOperation.coverImage
+                }
+            }
+            comicCoverOperationQueue.addOperation(coverFetchOperation)
         }
         
         return cell
@@ -174,6 +191,13 @@ extension ComicsCollectionViewController: UIImagePickerControllerDelegate, UINav
         }
         
         dismissViewControllerAnimated(true, completion: nil)
+        
+        //  cache the new image
+        do {
+            try ComicCoverImageCache.cacheCoverImage(image, forComic: comicForCoverChange)
+        } catch {
+            print("Error occurred when trying to cache the image \(image) for the comic: \(comicForCoverChange)")
+        }
         
         saveComicCoverToDropbox(image, forComic: comicForCoverChange)
         
