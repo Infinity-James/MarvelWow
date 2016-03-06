@@ -27,12 +27,12 @@ waiting 10 seconds just to see the comic book images if we have to get them
 over and over again.
 
 Introducing: the idea of caching! We cache the comic covers so that as you
-scroll through the feed you can see the bautiful comics (maybe with your own
-covers) without waiting for ever,
+scroll through the feed you can see the beautiful comics (maybe with your own
+covers) without waiting for ever.
 
 ### Dropbox
 
-When the user wishes to provide a custom image for a comic, if they are anot
+When the user wishes to provide a custom image for a comic, if they aren't
 already, they will be asked to log in to Dropbox where a MarvelWow folder will
 be created and the personalised comic book cover images will exist.
 
@@ -46,8 +46,8 @@ The only problem is, I didn't get to write enough of them! Time is a cruel
 mistress, and in a coding challenge there is never enough of it. I am happy
 with what is there, but there would ideally be more.
 
-There should be more UI coverage, but more importantly there should be tests
-for caching system, image fetch operations, and far more tests for the client
+There should be some UI tests, but more importantly there should be tests
+for caching system, image fetch operations, and far more coverage for the client
 and queries.
 
 ### CocoaPods
