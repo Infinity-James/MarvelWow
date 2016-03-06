@@ -169,8 +169,11 @@ extension ComicsCollectionViewController: UIImagePickerControllerDelegate, UINav
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         guard let comicForCoverChange = comicForCoverChange else {
             print("The user chose a new cover image, but apparently there is no comic for which we need to use this image.")
+            dismissViewControllerAnimated(true, completion: nil)
             return
         }
+        
+        dismissViewControllerAnimated(true, completion: nil)
         
         saveComicCoverToDropbox(image, forComic: comicForCoverChange)
         
@@ -179,5 +182,6 @@ extension ComicsCollectionViewController: UIImagePickerControllerDelegate, UINav
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         comicForCoverChange = nil
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
