@@ -5,7 +5,7 @@ Not only can you scroll through a seemingly infinite list of comics, but you
 can change the cover image for any of them, and save it to your Dropbox so that
 you can see that cover image every time you zoom past the comic in the list.
 
-# Choose Your Own Cover
+### Choose Your Own Cover
 
 The user can tap on any comic in the list and change the cover to any photo 
 currrently in their photo library, or a newly taken photo.
