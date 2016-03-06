@@ -54,3 +54,12 @@ and queries.
 
 This app uses the framework package manager CocoaPods. Currently the only 
 supported way to use the flashy new SwiftDropbox SDK is through CocoaPods.
+
+### Massive View Controllers! (MVC)
+
+I like MVC, and I know that's not cool any more. However, I hate massive view
+controllers, and what I have here, is a massive view controller.
+
+Ideally I would split a lot of the functionality into smaller components. This
+is once again a time issue, but rest assured that it is not something I make a
+habit of doing.
