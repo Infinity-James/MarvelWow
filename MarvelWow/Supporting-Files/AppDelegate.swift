@@ -35,4 +35,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        
+        if let authorizationResult = Dropbox.handleRedirectURL(url) {
+            switch authorizationResult {
+            case .Error(let error, let description):
+                print("Error occurred whilst authorizing Dropbox account: \(error): \(description)")
+            case .Success(let token):
+                print("The user successfully logged in to Dropbox with token: \(token)")
+            }
+        }
+        
+        return false
+    }
 }
