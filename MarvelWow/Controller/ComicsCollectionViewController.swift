@@ -201,8 +201,6 @@ extension ComicsCollectionViewController {
         let heightOfCollection = scrollView.contentSize.height
         let positionInCollection = scrollView.bounds.maxY
         let distanceFromBottom = heightOfCollection - positionInCollection
-
-        print("Height: \(heightOfCollection)/n Position: \(positionInCollection)\nDistance: \(distanceFromBottom)")
         
         //  if the user is a few comics from the bottom we need to load more
         let unacceptableDistanceFromBottom = (collectionView!.collectionViewLayout as! UICollectionViewFlowLayout).itemSize.height * 2
@@ -233,6 +231,12 @@ extension ComicsCollectionViewController: UIImagePickerControllerDelegate, UINav
         }
         
         saveComicCoverToDropbox(image, forComic: comicForCoverChange)
+        
+        //  reload the comic cell with the new cover
+        if let index = comics.indexOf({ $0.ID == comicForCoverChange.ID }) {
+            let itemIndex = comics.startIndex.distanceTo(index)
+            collectionView!.reloadItemsAtIndexPaths([NSIndexPath(forItem: itemIndex, inSection: 0)])
+        }
         
         self.comicForCoverChange = nil
     }
