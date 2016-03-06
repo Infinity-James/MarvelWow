@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eG5-yq-aBw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FzD-aS-k5i">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--Comics Collection View Controller-->
+        <!--Marvel Comics-->
         <scene sceneID="Ve4-Yi-TrP">
             <objects>
                 <collectionViewController id="eG5-yq-aBw" customClass="ComicsCollectionViewController" customModule="MarvelWow" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,7 +21,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ComicBookCollectionViewCell" id="4Zv-oa-dNw" customClass="ComicBookCollectionViewCell" customModule="MarvelWow" customModuleProvider="target">
-                                <rect key="frame" x="16" y="16" width="112" height="170"/>
+                                <rect key="frame" x="8" y="72" width="112" height="170"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="112" height="170"/>
@@ -33,7 +33,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.2901960784" green="0.81960784310000001" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="540-cW-7mo" secondAttribute="bottom" id="9A8-tE-FZM"/>
                                     <constraint firstItem="540-cW-7mo" firstAttribute="top" secondItem="4Zv-oa-dNw" secondAttribute="top" id="AbT-0o-DUo"/>
@@ -50,8 +49,27 @@
                             <outlet property="delegate" destination="eG5-yq-aBw" id="e6h-zn-aj1"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="Marvel Comics" id="Mqi-kC-Qkx"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RZ6-QI-Ve5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1551" y="626"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="urV-YT-v0o">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FzD-aS-k5i" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JLd-gK-SIp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eG5-yq-aBw" kind="relationship" relationship="rootViewController" id="JV2-d5-8nm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lln-o5-VoM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="739" y="626"/>
         </scene>
