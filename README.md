@@ -36,6 +36,20 @@ When the user wishes to provide a custom image for a comic, if they are anot
 already, they will be asked to log in to Dropbox where a MarvelWow folder will
 be created and the personalised comic book cover images will exist.
 
+### Tests
+
+Tests are the Peter Parker of programming. They're unassuming, nerdy, and
+people make fun of them. When you're in trouble though, they save your butt.
+Without tests it would have been way harder to get my client working properly.
+
+The only problem is, I didn't get to write enough of them! Time is a cruel
+mistress, and in a coding challenge there is never enough of it. I am happy
+with what is there, but there would ideally be more.
+
+There should be more UI coverage, but more importantly there should be tests
+for caching system, image fetch operations, and far more tests for the client
+and queries.
+
 ### CocoaPods
 
 This app uses the framework package manager CocoaPods. Currently the only 
