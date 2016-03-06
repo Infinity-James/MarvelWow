@@ -63,3 +63,24 @@ controllers, and what I have here, is a massive view controller.
 Ideally I would split a lot of the functionality into smaller components. This
 is once again a time issue, but rest assured that it is not something I make a
 habit of doing.
+
+## Building for the Future
+
+I have built this app with expanasbility and maintenance in mind. It's not
+because I want to make this particular app better, but it is to show you in a
+very samll way the fact that when approaching a product I approach it always
+thinking about the future.
+
+## Problems
+
+1. RAM in not managed at all. After scrolling for not very long the device's
+   RAM is full and the app chugs. This is the biggest issue and it's just got
+   to the point where I know you need this project now, and I have not
+   corrected it. I hope you can look past this big flaw and see the amount of
+   thought and planning that went behind creating this app.
+2. After selecting an image for the first time you are asked to  log into
+   Dropbox. After doing so the selected image will not be saved. All subsequent
+   images will be saved though.
+3. The way that the images are fetched for the cells is not yet ideal. You can
+   see a lot of the images on the cells changing because the naive way of
+   determining if we have the right cell does not do the full job.
