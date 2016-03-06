@@ -6,6 +6,7 @@
 //  Copyright © 2016 &Beyond. All rights reserved.
 //
 
+import SwiftyDropbox
 import UIKit
 
 //	MARK: Comics Collection View Controller
@@ -57,6 +58,31 @@ class ComicsCollectionViewController: UICollectionViewController {
         }
     }
     
+    //	MARK: Comic Cover Changing
+    
+    private func changeCoverForComicAtIndexPath(comicIndexPath: NSIndexPath) {
+        let alert = UIAlertController(title: "Where's the photo?", message: nil, preferredStyle: .ActionSheet)
+        let takePhotoAction = UIAlertAction(title: "Take a New Photo", style: .Default) { _ in
+            
+        }
+        let pickPhotoAction = UIAlertAction(title: "In My Photos Library", style: .Cancel) { _ in
+        }
+    }
+    
+    private func displayPhotoPickerWithSourceType(sourceType: UIImagePickerControllerSourceType) {
+        
+        //  we can only do the possible, the impossible is but a dream
+        guard UIImagePickerController.isSourceTypeAvailable(sourceType) else { return }
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = self
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    private func saveComicCoverToDropbox() {
+    }
+    
     //	MARK: View Lifecycle
     
     override func viewDidLoad() {
@@ -67,7 +93,7 @@ class ComicsCollectionViewController: UICollectionViewController {
     }
 }
 
-//	MARK: UICollectionViewDataSource Functions
+//	MARK: UICollectionViewDataSource
 
 extension ComicsCollectionViewController {
     
@@ -84,4 +110,26 @@ extension ComicsCollectionViewController {
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return comics.count
     }
+}
+
+//	MARK: UICollectionViewDelegate
+
+extension ComicsCollectionViewController {
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+        
+        //  when the user selects a comic we will give them the option to change the cover image for that comic
+        let alert = UIAlertController(title: "Add Your Own Cover!", message: "Do you want to change the cover of this comic to something even more awesome?", preferredStyle: .Alert)
+        let hellYeahAction = UIAlertAction(title: "Hell Yeah", style: .Default) { [unowned self] _ in Dropbox.authorizeFromController(self) }
+        let boringAction = UIAlertAction(title: "Nah", style: .Cancel, handler: nil)
+        alert.addAction(hellYeahAction)
+        alert.addAction(boringAction)
+    }
+}
+
+//	MARK: UIImagePickerControllerDelegate
+
+extension ComicsCollectionViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
 }
