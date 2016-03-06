@@ -54,6 +54,7 @@ class ComicsCollectionViewController: UICollectionViewController {
         var query = MarvelAPIComicBookQuery()
         query.addParameter(.Limit(comicBatchSize))
         query.addParameter(.Offset(comics.count))
+        query.addParameter(.OrderBy("-onsaleDate"))
         do {
             try marvelAPIClient.fetchResourcesForQuery(query) { (comics: [MarvelComic]?, error: ErrorType?) in
                 
