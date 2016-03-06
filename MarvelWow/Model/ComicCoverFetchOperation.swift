@@ -59,10 +59,18 @@ class ComicCoverFetchOperation: NSOperation {
         
         let data: NSData?
         
+        //  first we check the cache for the cover image to save from fetching it
+        
+        //  if it's not in the cache we check if the user has an image in their Dropbox for this comic
+        
+        //  finally we fall back to fetching the image from it's location on the Marvel servers
+        
         data = NSData(contentsOfURL: comicCoverImageURL)
         
+        //  we should have some valid data by now, but if somehow we don't we fail out
         guard let imageData = data,
             image = UIImage(data: imageData) else {
+                print("Could not get valid image data for comic: \(comic)")
                 cancel()
                 return
         }
