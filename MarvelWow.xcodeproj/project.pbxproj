@@ -334,6 +334,7 @@
 				TargetAttributes = {
 					1AAF03571C8704910038FF15 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = ZFDEX86BMA;
 					};
 					1AAF036B1C8704910038FF15 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -589,11 +590,14 @@
 			baseConfigurationReference = 45ADF5DDA04304C0A42421AC /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/MarvelWow/Supporting-Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.andbeyond.MarvelWow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/MarvelWow/Supporting-Files/MarvelWow-Bridging-Header.h";
 			};
 			name = Debug;
@@ -603,11 +607,14 @@
 			baseConfigurationReference = 8BA02EB11CA06C7F663BA3CB /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/MarvelWow/Supporting-Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.andbeyond.MarvelWow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/MarvelWow/Supporting-Files/MarvelWow-Bridging-Header.h";
 			};
 			name = Release;

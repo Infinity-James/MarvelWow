@@ -155,15 +155,17 @@ extension ComicsCollectionViewController {
         //  set the image for the comic cell
         let comic = comics[indexPath.item]
         if let coverFetchOperation = ComicCoverFetchOperation(comic: comic) {
-            coverFetchOperation.completionBlock = {
-                NSOperationQueue.mainQueue().addOperationWithBlock {
-                    //  only update the cell if it is still displayed (by the time we get the image it might be irrelevant)
-                    if cell.tag == indexPath.item {
-                        cell.coverImage = coverFetchOperation.coverImage
-                    }
+            
+            let coverImageSetterOperation = NSBlockOperation { [weak coverFetchOperation] in
+                //  only update the cell if it is still displayed (by the time we get the image it might be irrelevant)
+                if let operation = coverFetchOperation where cell.tag == indexPath.item {
+                    cell.coverImage = operation.coverImage
                 }
             }
+            coverImageSetterOperation.addDependency(coverFetchOperation)
+            
             comicCoverOperationQueue.addOperation(coverFetchOperation)
+            NSOperationQueue.mainQueue().addOperation(coverImageSetterOperation)
         }
         
         return cell
